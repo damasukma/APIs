@@ -1,16 +1,25 @@
 package controller
 import(
-	echo "github.com/labstack/echo"
+	"time"
+	_"strconv"
 	"net/http"
+	echo "github.com/labstack/echo"
+	core "APIs/core"
+
 )
 
 func Show(title, version string) echo.HandlerFunc{
+
 	return func(ctx echo.Context) error{
 		collect := make(map[string]string)
 		collect["title"] = title
 		collect["version"] = version
-	
+		t := time.Now()
+		intoFiles := []byte("Testing Bug " + t.String() + "\n")		
+		
+		core.DEBUG("DEBUG_TEST" , intoFiles)
+		
 		return ctx.JSON(http.StatusOK, collect)
-	
+		
 	}
 }
