@@ -1,12 +1,14 @@
 package main
 
 import(
- 	"github.com/labstack/echo"
+	"github.com/labstack/echo"
 	handler "APIs/controller"
 	middleware"github.com/labstack/echo/middleware"
+	"APIs/core"
 )
 
-func main(){
+
+func main(){	
 	engine := echo.New()
 
 	//middleware
@@ -15,7 +17,10 @@ func main(){
 
 	//Stack Routing
 	engine.GET("/", handler.Show("APIs", "v1"))
+	
 
-	//Logger
-	engine.Logger.Fatal(engine.Start(":1234"))
+	//recover
+	verbose := engine.Start(":9121")		
+	engine.Logger.Fatal(verbose)
+	core.NetListen("tcp", ":9121")
 }

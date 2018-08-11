@@ -3,6 +3,7 @@ package core
 import(
 	"os"
 	"log"
+	"net"
 )
 
 func DEBUG(file string , data []byte)(string, error){
@@ -25,4 +26,12 @@ func DEBUG(file string , data []byte)(string, error){
 
 	// log.SetOutput(fs)
 	// log.Println("This is a test log entry")
+}
+
+func NetListen(typeNetwork, port string){
+	_, err := net.Listen(typeNetwork, port)
+	if err != nil {
+		l :=log.New(os.Stderr,"", 0)
+		l.Println("New Error Message")
+	}
 }
