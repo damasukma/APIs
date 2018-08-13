@@ -10,7 +10,7 @@ import(
 )
 
 func Show(title, version string) echo.HandlerFunc{
-
+	core.Config()
 	return func(ctx echo.Context) error{
 		collect := make(map[string]string)
 		collect["title"] = title

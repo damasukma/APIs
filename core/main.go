@@ -4,6 +4,8 @@ import(
 	"os"
 	"log"
 	"net"
+	_ "github.com/lib/pq"
+	config "APIs/config"
 )
 
 func DEBUG(file string , data []byte)(string, error){
@@ -34,4 +36,9 @@ func NetListen(typeNetwork, port string){
 		l :=log.New(os.Stderr,"", 0)
 		l.Println("New Error Message")
 	}
+}
+
+func Config(){
+	env := config.Env()
+	log.Println(env["host"])
 }
